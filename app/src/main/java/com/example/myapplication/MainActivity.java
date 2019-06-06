@@ -55,7 +55,27 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+       /* Authenticator.setDefault(new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("username", "password".toCharArray());
+            }
+        });
+        HttpURLConnection urlConnection;
+        URL url = null;
+        InputStream inputStream;
 
+        try {
+            try {
+                url = new URL("https://api.github.com/search/repositories?q=" + "searchText");
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            urlConnection = (HttpURLConnection) url.openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+*/
     }
 
     @Override
