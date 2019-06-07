@@ -43,15 +43,20 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
-    ProgressBar pd;
+    //ProgressBar pd;
     TextView ctext;
     private String TAG = MainActivity.class.getSimpleName();
 
     private ProgressDialog pDialog;
     private ListView lv;
 
+    private ProgressDialog mProgressDialog;
+    private String url = "https://github.com/atapata/MyApplication/commits/master";
+    private ArrayList<String> mAuthorNameList = new ArrayList<>();
+    private ArrayList<String> mBlogUploadDateList = new ArrayList<>();
+    private ArrayList<String> mBlogTitleList = new ArrayList<>();
     // URL to get contacts JSON
-    private static String url = "https://github.com/atapata/MyApplication/commits/master";
+    //private static String url = "https://github.com/atapata/MyApplication/commits/master";
 
     ArrayList<HashMap<String, String>> contactList;
 
