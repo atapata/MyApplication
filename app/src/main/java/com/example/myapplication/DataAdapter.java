@@ -36,18 +36,26 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
     }
 
 
-    }
+
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.row_data, parent, false);
+
+        return new MyViewHolder(itemView);
 
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
+        holder.c_title.setText(cTitleList.get(position));
+        holder.c_author.setText(cNameList.get(position));
+        holder.c_upload_date.setText(cUploadDateList.get(position));
        }
 
     @Override
     public int getItemCount() {
-
+        return cTitleList.size();
+}
 }
