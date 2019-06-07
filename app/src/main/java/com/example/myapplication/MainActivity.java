@@ -52,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
     private ProgressDialog mProgressDialog;
     private String url = "https://github.com/atapata/MyApplication/commits/master";
-
+    private ArrayList<String> cNameList = new ArrayList<>();
+    private ArrayList<String> cUploadDateList = new ArrayList<>();
+    private ArrayList<String> cTitleList = new ArrayList<>();
     // URL to get contacts JSON
     //private static String url = "https://github.com/atapata/MyApplication/commits/master";
 
@@ -63,21 +65,78 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-      //  Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+       // setSupportActionBar(toolbar);
       //  pd=findViewById(R.id.cprogressbar);
          ctext=findViewById(R.id.ctext1);
         contactList = new ArrayList<>();
 
         //lv = (ListView) findViewById(R.id.list);
 
-        new GetContacts().execute();
+        new Description().execute();
+    }
+ private class Description extends AsyncTask<Void, Void, Void> {
+        String desc;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mProgressDialog = new ProgressDialog(MainActivity.this);
+            mProgressDialog.setTitle("Android Basic JSoup Tutorial");
+            mProgressDialog.setMessage("Loading...");
+            mProgressDialog.setIndeterminate(false);
+            mProgressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                // Connect to the web site
+                Document mBlogDocument = Jsoup.connect(url).get();
+                // Using Elements to get the Meta data
+                Elements mElementDataSize = mBlogDocument.select("a[class=commit-author tooltipped tooltipped-s user-mention]");
+                Log.d("aaaaaaaaaaa11111111111", String.valueOf(mElementDataSize));
+                // Locate the content attribute
+                int mElementSize = mElementDataSize.size();
+
+                for (int i = 0; i < mElementSize; i++) {
+                    Elements mElementAuthorName = mBlogDocument.select("a[class=message js-navigation-open]").select("a").eq(i);
+                    String mAuthorName = mElementAuthorName.text();
+                    Log.d("bbbbbbbbbbb222222222",mAuthorName);
+
+                    Elements mElementBlogUploadDate = mBlogDocument.select("div[class=commit-meta commit-author-section no-wrap d-flex flex-items-center mt-1]").eq(i);
+                    String mBlogUploadDate = mElementBlogUploadDate.text();
+                    Log.d("cccccccccc33333333",mBlogUploadDate);
+
+                    Elements mElementBlogTitle = mBlogDocument.select("h2[class=entry-title]").select("a").eq(i);
+                    String mBlogTitle = mElementBlogTitle.text();
+
+                    mAuthorNameList.add(mAuthorName);
+                    mBlogUploadDateList.add(mBlogUploadDate);
+                    mBlogTitleList.add(mBlogTitle);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            // Set description into TextView
+
+            RecyclerView mRecyclerView = (RecyclerView)findViewById(R.id.act_recyclerview);
+
+            DataAdapter mDataAdapter = new DataAdapter(MainActivity.this, mBlogTitleList, mAuthorNameList, mBlogUploadDateList);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+            mRecyclerView.setLayoutManager(mLayoutManager);
+            mRecyclerView.setAdapter(mDataAdapter);
+
+            mProgressDialog.dismiss();
+        }
     }
 
-    /**
-     * Async task class to get json by making HTTP call
-     */
-    private class GetContacts extends AsyncTask<Void, Void, Void> {
+   /* private class GetContacts extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
@@ -118,11 +177,11 @@ public class MainActivity extends AppCompatActivity {
                         //String gender = c.getString("gender");
 
                         // Phone node is JSON Object
-                        /*JSONObject phone = c.getJSONObject("phone");
+                        *//*JSONObject phone = c.getJSONObject("phone");
                         String mobile = phone.getString("mobile");
                         String home = phone.getString("home");
                         String office = phone.getString("office");
-*/
+*//*
                         // tmp hash map for single contact
                         HashMap<String, String> contact = new HashMap<>();
 
@@ -171,9 +230,9 @@ public class MainActivity extends AppCompatActivity {
             // Dismiss the progress dialog
             if (pDialog.isShowing())
                 pDialog.dismiss();
-            /**
+            *//**
              * Updating parsed JSON data into ListView
-             * */
+             * *//*
             ListAdapter adapter = new SimpleAdapter(
                     MainActivity.this, contactList,
                     R.layout.list_item, new String[]{"name", "email",
@@ -183,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
             lv.setAdapter(adapter);
         }
 
-    }
+    }*/
 }
         /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
