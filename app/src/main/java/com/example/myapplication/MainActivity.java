@@ -52,9 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ProgressDialog mProgressDialog;
     private String url = "https://github.com/atapata/MyApplication/commits/master";
-    private ArrayList<String> mAuthorNameList = new ArrayList<>();
-    private ArrayList<String> mBlogUploadDateList = new ArrayList<>();
-    private ArrayList<String> mBlogTitleList = new ArrayList<>();
+
     // URL to get contacts JSON
     //private static String url = "https://github.com/atapata/MyApplication/commits/master";
 
@@ -65,13 +63,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+      //  Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
       //  pd=findViewById(R.id.cprogressbar);
          ctext=findViewById(R.id.ctext1);
         contactList = new ArrayList<>();
 
-        lv = (ListView) findViewById(R.id.list);
+        //lv = (ListView) findViewById(R.id.list);
 
         new GetContacts().execute();
     }
