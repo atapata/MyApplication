@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         //Toolbar toolbar = findViewById(R.id.toolbar);
        // setSupportActionBar(toolbar);
       //  pd=findViewById(R.id.cprogressbar);
-         ctext=findViewById(R.id.ctext1);
+        // ctext=findViewById(R.id.ctext1);
         contactList = new ArrayList<>();
 
         //lv = (ListView) findViewById(R.id.list);
