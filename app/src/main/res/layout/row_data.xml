@@ -10,20 +10,20 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/row_tv_blog_title"
+            android:id="@+id/c_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/row_tv_blog_author"
+            android:id="@+id/c_author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp" />
 
         <TextView
-            android:id="@+id/row_tv_blog_upload_date"
+            android:id="@+id/c_upload_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp" />

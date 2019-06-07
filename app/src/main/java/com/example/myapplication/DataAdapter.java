@@ -25,7 +25,14 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        
+        private TextView c_title, c_author, c_upload_date;
+
+        public MyViewHolder(View view) {
+            super(view);
+            c_title = (TextView) view.findViewById(R.id.c_title);
+            c_author = (TextView) view.findViewById(R.id.c_author);
+            c_upload_date = (TextView) view.findViewById(R.id.c_upload_date);
+        }
     }
 
 
